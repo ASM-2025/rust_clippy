@@ -3,6 +3,7 @@ mod explicit_counter_loop;
 mod explicit_into_iter_loop;
 mod explicit_iter_loop;
 mod for_kv_map;
+mod has_loop;
 mod iter_next_loop;
 mod manual_find;
 mod manual_flatten;
@@ -575,6 +576,25 @@ declare_clippy_lint! {
     "manual implementation of `Iterator::find`"
 }
 
+declare_clippy_lint! {
+    /// ### What it does
+    ///
+    /// ### Why is this bad?
+    ///
+    /// ### Example
+    /// ```rust
+    /// // example code where clippy issues a warning
+    /// ```
+    /// Use instead:
+    /// ```rust
+    /// // example code which does not raise clippy warning
+    /// ```
+    #[clippy::version = "1.70.0"]
+    pub HAS_LOOP,
+    restriction,
+    "Checks whethter the user uses loops"
+}
+
 declare_lint_pass!(Loops => [
     MANUAL_MEMCPY,
     MANUAL_FLATTEN,
@@ -594,10 +614,19 @@ declare_lint_pass!(Loops => [
     SINGLE_ELEMENT_LOOP,
     MISSING_SPIN_LOOP,
     MANUAL_FIND,
+    HAS_LOOP,
 ]);
 
 impl<'tcx> LateLintPass<'tcx> for Loops {
     fn check_expr(&mut self, cx: &LateContext<'tcx>, expr: &'tcx Expr<'_>) {
+        // dbg!("{}", &expr.kind);
+        match expr.kind {
+            ExprKind::Loop(..) => {
+                has_loop::check(cx, expr.span);
+            },
+            _ => {},
+        }
+
         let for_loop = higher::ForLoop::hir(expr);
         if let Some(higher::ForLoop {
             pat,

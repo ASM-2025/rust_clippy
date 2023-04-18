@@ -1,0 +1,12 @@
+error: Loop detected
+  --> $DIR/has_loop4.rs:5:5
+   |
+LL | /     for i in 1..4 {
+LL | |         println!("{}", i);
+LL | |     }
+   | |_____^
+   |
+   = note: `-D clippy::has-loop` implied by `-D warnings`
+
+error: aborting due to previous error
+

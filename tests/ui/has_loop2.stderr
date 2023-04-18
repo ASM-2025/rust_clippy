@@ -1,0 +1,16 @@
+error: Loop detected
+  --> $DIR/has_loop2.rs:6:5
+   |
+LL | /     while let Some(i) = optional {
+LL | |         if i > 9 {
+LL | |             println!("Greater than 9, quit!");
+LL | |             optional = None;
+...  |
+LL | |         }
+LL | |     }
+   | |_____^
+   |
+   = note: `-D clippy::has-loop` implied by `-D warnings`
+
+error: aborting due to previous error
+

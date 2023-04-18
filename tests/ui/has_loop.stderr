@@ -1,0 +1,12 @@
+error: Loop detected
+  --> $DIR/has_loop.rs:6:5
+   |
+LL | /     loop {
+LL | |         println!("hello, world")
+LL | |     }
+   | |_____^
+   |
+   = note: `-D clippy::has-loop` implied by `-D warnings`
+
+error: aborting due to previous error
+
