@@ -1,4 +1,4 @@
-error: Loop detected
+error: Loop detected in function "main"
   --> $DIR/has_loop.rs:6:5
    |
 LL | /     loop {

@@ -1,4 +1,4 @@
-error: Loop detected
+error: Loop detected in function "main"
   --> $DIR/has_loop3.rs:6:5
    |
 LL | /     while i < 10 {

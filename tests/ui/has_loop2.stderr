@@ -1,4 +1,4 @@
-error: Loop detected
+error: Loop detected in function "main"
   --> $DIR/has_loop2.rs:6:5
    |
 LL | /     while let Some(i) = optional {

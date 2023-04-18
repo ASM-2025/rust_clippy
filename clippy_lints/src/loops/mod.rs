@@ -622,7 +622,7 @@ impl<'tcx> LateLintPass<'tcx> for Loops {
         // dbg!("{}", &expr.kind);
         match expr.kind {
             ExprKind::Loop(..) => {
-                has_loop::check(cx, expr.span);
+                has_loop::check(cx, expr);
             },
             _ => {},
         }
